@@ -2,6 +2,10 @@ const redux = require('redux');
 const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators;
 const combineReducers = redux.combineReducers;
+const applyMiddleware = redux.applyMiddleware;
+
+const reduxLogger = require('redux-logger');
+const logger = reduxLogger.createLogger();
 
 
 console.log("From index.js");
@@ -100,12 +104,10 @@ const reducers = combineReducers({
  * 
  */
 
-const store = createStore(reducers); // Responsibility 1 - reducer manages state and get initialState
+const store = createStore(reducers, applyMiddleware(logger)); // Responsibility 1 - reducer manages state and get initialState
 console.log('Initial state ', store.getState());   // Responsibility 2
 
-const unsubscribe = store.subscribe(() => { // Responsibility 4
-  console.log('Update state ', store.getState());
-});
+const unsubscribe = store.subscribe(() => {}); // Responsibility 4
 
 // store.dispatch(orderCake()); // Responsibility 3
 // store.dispatch(orderCake());
