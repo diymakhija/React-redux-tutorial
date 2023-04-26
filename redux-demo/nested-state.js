@@ -1,5 +1,6 @@
 const redux = require("redux");
 const createStore = redux.createStore;
+const produce = require("immer").produce;
 
 const UPDATED_STREET = "UPDATED_STREET";
 
@@ -22,13 +23,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATED_STREET:
-      return {
-        ...state,
-        address: {
-          ...state.address,
-          street: action.payload
-        }
-      }  
+      // return {
+      //   ...state,
+      //   address: {
+      //     ...state.address,
+      //     street: action.payload
+      //   }
+      // }  
+
+      // produce is used to merge nested state
+      return produce(state, (draft) => {
+        draft.address.street = action.payload
+      })
     default:
       return state;
   }
