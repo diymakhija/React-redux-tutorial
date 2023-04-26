@@ -8,6 +8,8 @@ console.log("From index.js");
 // Action name 
 const CAKE_ORDERED = 'CAKE_ORDERED';
 const CAKE_RESTOCKED = 'CAKE_RESTOCKED';
+const ICECREAM_ORDERED = 'ICECREAM_ORDERED';
+const ICECREAM_RESTOCKED = 'ICECREAM_RESTOCKED';
 
 // Action Creator 
 function orderCake() {
@@ -22,10 +24,23 @@ function restockCake(qty = 1) {
     payload: qty
   }
 }
+function orderIcecream() {
+  return {
+    type: ICECREAM_ORDERED,
+    payload: 1
+  }
+}
+function restockIcecream(qty = 1) {
+  return {
+    type: ICECREAM_RESTOCKED,
+    payload: qty
+  }
+}
 
 // State of the application can be maintaned as single object
 const initialState = {
-  numOfCakes: 10
+  numOfCakes: 10,
+  numOfIcecreams: 5
 }
 
 
@@ -43,6 +58,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         numOfCakes: state.numOfCakes + action.payload,
+      }
+    case ICECREAM_ORDERED:
+      return {
+        ...state,
+        numOfIcecreams: state.numOfIcecreams - 1,
+      }
+    case ICECREAM_RESTOCKED:
+      return {
+        ...state,
+        numOfIcecreams: state.numOfIcecreams + action.payload,
       }
     default:
       return state;
@@ -72,11 +97,16 @@ const unsubscribe = store.subscribe(() => { // Responsibility 4
 // store.dispatch(orderCake());
 // store.dispatch(restockCake(5));
 
-const actions = bindActionCreators({orderCake, restockCake}, store.dispatch);
+const actions = bindActionCreators({orderCake, restockCake, orderIcecream, restockIcecream}, store.dispatch);
 actions.orderCake();
 actions.orderCake();
 actions.orderCake();
 actions.restockCake(5);
+actions.orderIcecream();
+actions.orderIcecream();
+actions.orderIcecream();
+actions.restockIcecream(5);
+
 
 unsubscribe(); // Responsibility 5
 
