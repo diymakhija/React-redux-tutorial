@@ -1,6 +1,7 @@
 const redux = require('redux');
 const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators;
+const combineReducers = redux.combineReducers;
 
 
 console.log("From index.js");
@@ -38,8 +39,10 @@ function restockIcecream(qty = 1) {
 }
 
 // State of the application can be maintaned as single object
-const initialState = {
+const initialCakeState = {
   numOfCakes: 10,
+}
+const initialIcecreamState = {
   numOfIcecreams: 5
 }
 
@@ -47,7 +50,7 @@ const initialState = {
 // Reducer 
 // (previousState action) => newState
 
-const reducer = (state = initialState, action) => {
+const cakeReducer = (state = initialCakeState, action) => {
   switch (action.type) {
     case CAKE_ORDERED:
       return {
@@ -59,6 +62,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         numOfCakes: state.numOfCakes + action.payload,
       }
+    default:
+      return state;
+  }
+}
+const icecreamReducer = (state = initialIcecreamState, action) => {
+  switch (action.type) {
     case ICECREAM_ORDERED:
       return {
         ...state,
@@ -74,6 +83,12 @@ const reducer = (state = initialState, action) => {
   }
 }
 
+// combine all the reducers
+const reducers = combineReducers({
+  cake: cakeReducer, 
+  icecream: icecreamReducer
+});
+
 /**
  * Responsibilities of store 
  * 
@@ -85,7 +100,7 @@ const reducer = (state = initialState, action) => {
  * 
  */
 
-const store = createStore(reducer); // Responsibility 1 - reducer manages state and get initialState
+const store = createStore(reducers); // Responsibility 1 - reducer manages state and get initialState
 console.log('Initial state ', store.getState());   // Responsibility 2
 
 const unsubscribe = store.subscribe(() => { // Responsibility 4
