@@ -1,5 +1,7 @@
 const redux = require('redux');
 const createStore = redux.createStore;
+const bindActionCreators = redux.bindActionCreators;
+
 
 console.log("From index.js");
 
@@ -65,11 +67,16 @@ const unsubscribe = store.subscribe(() => { // Responsibility 4
   console.log('Update state ', store.getState());
 });
 
-store.dispatch(orderCake()); // Responsibility 3
-store.dispatch(orderCake());
-store.dispatch(orderCake());
+// store.dispatch(orderCake()); // Responsibility 3
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(restockCake(5));
 
-store.dispatch(restockCake(5));
+const actions = bindActionCreators({orderCake, restockCake}, store.dispatch);
+actions.orderCake();
+actions.orderCake();
+actions.orderCake();
+actions.restockCake(5);
 
 unsubscribe(); // Responsibility 5
 
