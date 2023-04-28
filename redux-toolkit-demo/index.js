@@ -1,4 +1,5 @@
 const store = require("./app/store");
+const { fetchUsers } = require("./features/user/userSlice");
 const cakeActions = require("./features/cake/cakeSlice").cakeActions;
 const icecreamActions = require('./features/icecream/icecreamSlice').icecreamActions;
 
@@ -17,4 +18,9 @@ store.dispatch(icecreamActions.ordered());
 store.dispatch(icecreamActions.ordered());
 store.dispatch(icecreamActions.restocked(5));
 
-unsubscribe();
+store.dispatch(fetchUsers());
+
+
+// Because fetchUsers is an async event, we can not unsubscribe the store
+// unsubscribe();
+
