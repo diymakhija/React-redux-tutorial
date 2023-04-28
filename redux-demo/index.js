@@ -44,10 +44,10 @@ function restockIcecream(qty = 1) {
 
 // State of the application can be maintaned as single object
 const initialCakeState = {
-  numOfCakes: 10,
+  numOfCakes: 20,
 }
 const initialIcecreamState = {
-  numOfIcecreams: 5
+  numOfIcecreams: 15
 }
 
 
@@ -81,6 +81,11 @@ const icecreamReducer = (state = initialIcecreamState, action) => {
       return {
         ...state,
         numOfIcecreams: state.numOfIcecreams + action.payload,
+      }
+    case CAKE_ORDERED: // Free iceCream for every cake order
+      return {
+        ...state,
+        numOfIcecreams: state.numOfIcecreams - 1
       }
     default:
       return state;
