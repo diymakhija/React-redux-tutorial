@@ -8,6 +8,7 @@ const initialState = {
   error: "",
 };
 
+// This will automatically create pending, fulfilled and rejected state
 const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
   return axios
     .get("https://jsonplaceholder.typicode.com/users")
