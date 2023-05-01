@@ -1,6 +1,5 @@
-const createSlice = require("@reduxjs/toolkit").createSlice;
-const createAsyncThunk = require("@reduxjs/toolkit").createAsyncThunk;
-const axios = require("axios");
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   loading: "false",
@@ -9,7 +8,7 @@ const initialState = {
 };
 
 // This will automatically create pending, fulfilled and rejected state
-const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
+export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
   return axios
     .get("https://jsonplaceholder.typicode.com/users")
     .then((response) => response.data.map((user) => user.id));
@@ -34,5 +33,5 @@ const userSlice = createSlice({
     })
   },
 });
-module.exports = userSlice.reducer;
-module.exports.fetchUsers = fetchUsers;
+
+export default userSlice.reducer;
