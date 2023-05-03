@@ -1,3 +1,8 @@
+## Project reference links 
+Youtube - https://www.youtube.com/watch?v=2kL28Qyw9-0&t=3463s
+Github - https://github.com/dmalvia/React_Redux_ToolKit_Movie_App/tree/master
+OMDBAPI - https://www.omdbapi.com/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
