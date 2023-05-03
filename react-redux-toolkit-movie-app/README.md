@@ -2,6 +2,7 @@
 Youtube - https://www.youtube.com/watch?v=2kL28Qyw9-0&t=3463s
 Github - https://github.com/dmalvia/React_Redux_ToolKit_Movie_App/tree/master
 OMDBAPI - https://www.omdbapi.com/
+React-slick - https://react-slick.neostack.com/
 
 # Getting Started with Create React App
 

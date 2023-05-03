@@ -4,10 +4,9 @@ import { OMDB_API_KEY } from "../../common/api/MovieApiKey";
 
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
-  async () => {
-    const movieText = "Harry";
+  async (term) => {
     const response = await movieApi.get(
-      `?apiKey=${OMDB_API_KEY}&s=${movieText}&type=movie`
+      `?apiKey=${OMDB_API_KEY}&s=${term}&type=movie`
     );
     return response.data;
   }
@@ -15,10 +14,9 @@ export const fetchAsyncMovies = createAsyncThunk(
 
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fectAsyncShows",
-  async () => {
-    const seriesText = "Friends";
+  async (term) => {
     const response = await movieApi.get(
-      `?apiKey=${OMDB_API_KEY}&s=${seriesText}&type=series`
+      `?apiKey=${OMDB_API_KEY}&s=${term}&type=series`
     );
     return response.data;
   }
