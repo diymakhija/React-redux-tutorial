@@ -54,7 +54,8 @@ const movieSlice = createSlice({
     },
     [fetchAsyncMovies.fulfilled]: (state, action) => {
       console.log("fetchAsyncMovies fetched successfully");
-      return { ...state, movies: action.payload };
+      state.movies = action.payload;
+      // return { ...state, movies: action.payload };
     },
     [fetchAsyncMovies.rejected]: () => {
       console.log("fetchAsyncMovies rejected");
@@ -64,7 +65,8 @@ const movieSlice = createSlice({
     },
     [fetchAsyncShows.fulfilled]: (state, action) => {
       console.log("fetchAsyncShows fetched successfully");
-      return { ...state, shows: action.payload };
+      state.shows = action.payload;
+      /// return { ...state, shows: action.payload };
     },
     [fetchAsyncShows.rejected]: () => {
       console.log("fetchAsyncMovies rejected");
@@ -74,7 +76,8 @@ const movieSlice = createSlice({
     },
     [fetchAsyncMovieOrShowDetails.fulfilled]: (state, action) => {
       console.log("fetchAsyncMovieOrShowDetails fetched successfully");
-      return { ...state, selectMovieOrShow: action.payload };
+      state.selectMovieOrShow = action.payload
+      // return { ...state, selectMovieOrShow: action.payload };
     },
     [fetchAsyncMovieOrShowDetails.rejected]: () => {
       console.log("fetchAsyncMovieOrShowDetails rejected");
